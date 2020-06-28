@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- Fontawesome 5.7.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+    
+    <title>Login con Facebook</title>
+  </head>
+  <body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
+    <nav class="navbar navbar-dark bg-dark justify-content-between">
+        <span class="navbar-brand">
+            <i class="fas fa-fingerprint fa-lg"></i>
+        </span>
+        <a class="navbar-text red-tooltip" href="/logout" data-toggle="tooltip" data-placement="bottom" title="Cerrar sesión">
+            <i class="fas fa-sign-out-alt fa-lg text-white"></i>
+        </a>
+    </nav>
+
+    <div class="container p-0">
+        <div class="row">
+            <div class="col-sm-4 offset-sm-4">
+                <div class="card m-5 bg-dark text-white">
+                    <img class="card-img-top p-3" src="{{ user.photo }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Bienvenido</h5>
+                        <p class="card-text p-0 m-0">{{ user.name }} Autenticado con {{ user.provider }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
