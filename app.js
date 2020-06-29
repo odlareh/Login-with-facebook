@@ -4,8 +4,6 @@ const passport = require('passport');
 const cookieSession = require('cookie-session');
 const FacebookStrategy = require('passport-facebook').Strategy;
 const path = require('path');
-// const graph = require('fbgraph');
-// const { urlencoded } = require('body-parser');
 const service = require('./service_provider');
 
 const app = express();
@@ -18,13 +16,8 @@ app.set('view engine', 'hbs');
 app.use(cookieSession({ name: 'session', keys: ['key1', 'key2'] }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(express.cookieParser());
-// app.use(express.urlencoded());
-// app.use(express.json());
-// app.use(express.methodOverride());
 
 app.use(express.static(__dirname + '/public'));
-// app.use(express.session({ secret: 'odlareh' }));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -35,7 +28,6 @@ app.get('/', (req, res) => {
 })
 
 app.get('/dashboard', (req, res) => {
-    // console.log('req: ', req)
     res.render('dashboard', { user: req.user});
 })
 
@@ -43,8 +35,6 @@ app.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
 });
-
-// var user = '';
 
 passport.use(new FacebookStrategy({
     clientID: service.facebook.clientID,
@@ -60,8 +50,6 @@ passport.use(new FacebookStrategy({
         photo: profile.photos[0].value
     }
 
-    console.log('user: ', user)
-
     done(null, user);
 }))
 
@@ -75,8 +63,11 @@ passport.deserializeUser((user, done) => {
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
-app.get('/auth/facebook/callback', passport.authenticate('facebook', 
-    { successRedirect: '/dashboard', failureRedirect: '/' }),
+app.get('/auth/facebook/callback', 
+    passport.authenticate('facebook', {
+        successRedirect: '/dashboard', 
+        failureRedirect: '/'
+    }),
 );
 
 app.listen(app.get('port'), function(){
